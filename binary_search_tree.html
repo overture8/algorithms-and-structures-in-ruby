@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Binary Search Tree</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="binary_search_tree.html">
+                binary_search_tree.rb
+              </a>
+            
+              
+              <a class="source" href="palindrome.html">
+                palindrome.rb
+              </a>
+            
+              
+              <a class="source" href="queue.html">
+                queue.rb
+              </a>
+            
+              
+              <a class="source" href="singly_linked_list.html">
+                singly_linked_list.rb
+              </a>
+            
+              
+              <a class="source" href="stack.html">
+                stack.rb
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="binary-search-tree">Binary Search Tree</h1>
+<p>Implementation in Ruby</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinarySearchTree</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
+    <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:key</span>, <span class="hljs-symbol">:left</span>, <span class="hljs-symbol">:right</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize( key )
+      <span class="hljs-variable">@key</span> = key
+      <span class="hljs-variable">@left</span> = <span class="hljs-keyword">nil</span>
+      <span class="hljs-variable">@right</span> = <span class="hljs-keyword">nil</span>
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>insert( new_key )
+      <span class="hljs-keyword">if</span> new_key &lt;= <span class="hljs-variable">@key</span>
+        <span class="hljs-variable">@left</span>.<span class="hljs-keyword">nil</span>? ? <span class="hljs-variable">@left</span> = <span class="hljs-constant">Node</span>.new( new_key ) <span class="hljs-symbol">:</span> <span class="hljs-variable">@left</span>.insert( new_key )
+      <span class="hljs-keyword">elsif</span> new_key &gt; <span class="hljs-variable">@key</span>
+        <span class="hljs-variable">@right</span>.<span class="hljs-keyword">nil</span>? ? <span class="hljs-variable">@right</span> = <span class="hljs-constant">Node</span>.new( new_key ) <span class="hljs-symbol">:</span> <span class="hljs-variable">@right</span>.insert( new_key )
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize
+    <span class="hljs-variable">@root</span> = <span class="hljs-keyword">nil</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>insert( key )
+    <span class="hljs-keyword">if</span> <span class="hljs-variable">@root</span>.<span class="hljs-keyword">nil</span>?
+      <span class="hljs-variable">@root</span> = <span class="hljs-constant">Node</span>.new( key )
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-variable">@root</span>.insert( key )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>in_order(node=<span class="hljs-variable">@root</span>, &amp;block)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
+    in_order(node.left, &amp;block)
+    <span class="hljs-keyword">yield</span> node
+    in_order(node.right, &amp;block)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pre_order(node=<span class="hljs-variable">@root</span>, &amp;block)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
+    <span class="hljs-keyword">yield</span> node
+    in_order(node.left, &amp;block)
+    in_order(node.right, &amp;block)
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>This is post order traversal (recursive implementation).
+Notice hold the yield for visting the node is after the
+two recursice calls for left and right nodes respectively.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>post_order(node=<span class="hljs-variable">@root</span>, &amp;block)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
+    in_order(node.left, &amp;block)
+    in_order(node.right, &amp;block)
+    <span class="hljs-keyword">yield</span> node
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>search( key, node=<span class="hljs-variable">@root</span> )
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">nil</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
+    <span class="hljs-keyword">if</span> key &lt; node.key
+      search( key, node.left )
+    <span class="hljs-keyword">elsif</span> key &gt; node.key
+      search( key, node.right )
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-keyword">return</span> node
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-constant">B</span> = <span class="hljs-constant">BinarySearchTree</span>.new
+
+(<span class="hljs-number">1</span>..<span class="hljs-number">20</span>).to_a.each <span class="hljs-keyword">do</span> |i|
+  <span class="hljs-constant">B</span>.insert(i)
+<span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
