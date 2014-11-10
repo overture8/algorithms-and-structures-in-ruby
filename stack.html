@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>stack.rb</title>
+  <title>Stack</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -49,12 +49,6 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>stack.rb</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
@@ -63,28 +57,91 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1 id="stack">Stack</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
-  <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:next</span>, <span class="hljs-symbol">:data</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Stack</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Create a <code>Node</code> struture to represent
+an individual node in the linked list.
+There is a <code>data</code> field to hold any data 
+and a <code>next</code> field that points to the 
+next item in the list.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize(data)
-    <span class="hljs-variable">@data</span> = data
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
+    <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:next</span>, <span class="hljs-symbol">:data</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Stack</span></span>
-  <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:top</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize(data)
+      <span class="hljs-variable">@data</span> = data
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Pop nodes off the stack by overriding
+<code>@top</code> with <code>@top.next</code>.  Finally, return the
+<code>data</code> that was popped off the stack.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pop
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pop
     <span class="hljs-keyword">unless</span> <span class="hljs-variable">@top</span>.<span class="hljs-keyword">nil</span>?
       <span class="hljs-variable">@top</span> = <span class="hljs-variable">@top</span>.<span class="hljs-keyword">next</span> 
       <span class="hljs-variable">@top</span>.data <span class="hljs-keyword">if</span> <span class="hljs-variable">@top</span>
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Push nodes onto the stack by first
+checking if there is anything on the stack.
+If not, push create a new node and add it
+to <code>@top</code>. Otherwise, store the current <code>@top</code>
+in a temp variable then override <code>@top</code> with
+the new node.  Finally, set the <code>next</code> attibute
+to point to the old <code>@top</code>.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>push(obj)
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>push(obj)
     <span class="hljs-keyword">if</span> <span class="hljs-variable">@top</span>.<span class="hljs-keyword">nil</span>?
       <span class="hljs-variable">@top</span> = <span class="hljs-constant">Node</span>.new(obj)
     <span class="hljs-keyword">else</span>
@@ -92,9 +149,23 @@
       <span class="hljs-variable">@top</span> = <span class="hljs-constant">Node</span>.new(obj)
       <span class="hljs-variable">@top</span>.<span class="hljs-keyword">next</span> = old_top
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Return the <code>data</code> of
+<code>@top</code>, if it exists.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>peek
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>peek
     <span class="hljs-variable">@top</span>.data <span class="hljs-keyword">if</span> <span class="hljs-variable">@top</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></pre></div></div>
