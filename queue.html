@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>queue.rb</title>
+  <title>Queue</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -49,12 +49,6 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>queue.rb</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
@@ -63,21 +57,70 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1 id="queue">Queue</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
-  <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:next</span>, <span class="hljs-symbol">:data</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Queue</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Create a <code>Node</code> struture to represent
+an individual node in the linked list.
+There is a <code>data</code> field to hold any data 
+and a <code>next</code> field that points to the 
+next item in the list.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize(data)
-    <span class="hljs-variable">@data</span> = data
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
+    <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:next</span>, <span class="hljs-symbol">:data</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Queue</span></span>
-  <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:first</span>, <span class="hljs-symbol">:last</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize(data)
+      <span class="hljs-variable">@data</span> = data
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Enqueue a new node by first checking
+if there is anything on the queue and
+if so, assign a new node to the <code>@last</code>
+pointer then seting <code>@first</code> to <code>@last</code>.
+Otherwise, we create a new node and point
+to it form the <code>@last</code> node (via the next
+attribute). Then override <code>@last</code> with 
+<code>@last.next</code>.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>enqueue(obj)
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>enqueue(obj)
     <span class="hljs-keyword">if</span> <span class="hljs-variable">@first</span>.<span class="hljs-keyword">nil</span>?
       <span class="hljs-variable">@last</span> = <span class="hljs-constant">Node</span>.new(obj)
       <span class="hljs-variable">@first</span> = <span class="hljs-variable">@last</span>
@@ -85,14 +128,32 @@
       <span class="hljs-variable">@last</span>.<span class="hljs-keyword">next</span> = <span class="hljs-constant">Node</span>.new(obj)
       <span class="hljs-variable">@last</span> = <span class="hljs-variable">@last</span>.<span class="hljs-keyword">next</span>
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>If there is something on the queue
+store the current <code>@first</code> node so
+we can return it at the end then override
+<code>@first</code> with the next node in the queue,
+<code>@first.next</code>. Finally, check if the first
+node is nil and if so, set <code>@last</code> to be nil.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>dequeue
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>dequeue
     <span class="hljs-keyword">unless</span> <span class="hljs-variable">@first</span>.<span class="hljs-keyword">nil</span>?
-      obj = <span class="hljs-variable">@first</span>.data
+      orig_first = <span class="hljs-variable">@first</span>
       <span class="hljs-variable">@first</span> = <span class="hljs-variable">@first</span>.<span class="hljs-keyword">next</span>
       <span class="hljs-variable">@last</span> = <span class="hljs-keyword">nil</span> <span class="hljs-keyword">if</span> <span class="hljs-variable">@first</span>.<span class="hljs-keyword">nil</span>?
-      obj
+      orig_first
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></pre></div></div>
