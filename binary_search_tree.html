@@ -58,21 +58,63 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="binary-search-tree">Binary Search Tree</h1>
-<p>Implementation in Ruby</p>
 
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinarySearchTree</span></span>
   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>
-    <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:key</span>, <span class="hljs-symbol">:left</span>, <span class="hljs-symbol">:right</span>
+    <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:key</span>, <span class="hljs-symbol">:left</span>, <span class="hljs-symbol">:right</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>On initialization, the <code>@key</code> variable is set.  This is used in the insert
+method below as the parent for the <code>@left</code> and <code>@right</code> nodes.</p>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize( key )
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize( key )
       <span class="hljs-variable">@key</span> = key
       <span class="hljs-variable">@left</span> = <span class="hljs-keyword">nil</span>
       <span class="hljs-variable">@right</span> = <span class="hljs-keyword">nil</span>
-    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Inserting at the node level will check what the new key is in
+order to insert it in the appropriate place.  The restriction being that
+the key in any node is larger than the keys in all nodes in that node’s 
+left sub-tree and smaller than the keys in all nodes in that node’s 
+right sub-tree.</p>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>insert( new_key )
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>insert( new_key )
       <span class="hljs-keyword">if</span> new_key &lt;= <span class="hljs-variable">@key</span>
         <span class="hljs-variable">@left</span>.<span class="hljs-keyword">nil</span>? ? <span class="hljs-variable">@left</span> = <span class="hljs-constant">Node</span>.new( new_key ) <span class="hljs-symbol">:</span> <span class="hljs-variable">@left</span>.insert( new_key )
       <span class="hljs-keyword">elsif</span> new_key &gt; <span class="hljs-variable">@key</span>
@@ -84,11 +126,11 @@
         </li>
         
         
-        <li id="section-2">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Initialize the <code>@root</code> variable to <code>nil</code>.</p>
 
@@ -101,11 +143,11 @@
         </li>
         
         
-        <li id="section-3">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Inserting at the <code>BinarySearchTree</code> level looks if there is a
 <code>@root</code> node, if not it creates one.  If there is then the insert
@@ -124,11 +166,11 @@ is delegated the the <code>Node</code> level.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>This is <strong>in order traversal</strong> (recursive implementation).
 Notice hold the yield for visting the node is <strong>in between</strong> the
@@ -146,11 +188,11 @@ two recursive calls for left and right nodes respectively.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>This is <strong>pre order traversal</strong> (recursive implementation).
 Notice hold the yield for visting the node is <strong>before</strong> the
@@ -168,11 +210,11 @@ two recursive calls for left and right nodes respectively.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>This is <strong>post order traversal</strong> (recursive implementation).
 Notice hold the yield for visting the node is <strong>after</strong> the
@@ -185,9 +227,25 @@ two recursive calls for left and right nodes respectively.</p>
     in_order(node.left, &amp;block)
     in_order(node.right, &amp;block)
     <span class="hljs-keyword">yield</span> node
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>This is where you get to see the binary search tree shine.
+A recursive approach is taken to traverse the tree, each time
+disregarding half of the nodes in the tree.  With this you
+will get O( log n ) time.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>search( key, node=<span class="hljs-variable">@root</span> )
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>search( key, node=<span class="hljs-variable">@root</span> )
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">nil</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
     <span class="hljs-keyword">if</span> key &lt; node.key
       search( key, node.left )
@@ -198,12 +256,6 @@ two recursive calls for left and right nodes respectively.</p>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-constant">B</span> = <span class="hljs-constant">BinarySearchTree</span>.new
-
-(<span class="hljs-number">1</span>..<span class="hljs-number">20</span>).to_a.each <span class="hljs-keyword">do</span> |i|
-  <span class="hljs-constant">B</span>.insert(i)
 <span class="hljs-keyword">end</span></pre></div></div>
             
         </li>
