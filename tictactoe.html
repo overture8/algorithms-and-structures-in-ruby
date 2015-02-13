@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>tictactoe.rb</title>
+  <title>TicTacToe</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -54,12 +54,6 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>tictactoe.rb</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
@@ -67,6 +61,19 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="tictactoe">TicTacToe</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               
             </div>
@@ -79,11 +86,11 @@
         </li>
         
         
-        <li id="section-2">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Why use Sets? <code>Sets</code> are particularly useful when
 identifying if a user has a winning line. We don’t
@@ -107,11 +114,11 @@ method and we’re done. See the <code>winners?</code> method below.</p>
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Create two users using the <code>Struct</code>, defined
 below, and set the current user to user1.</p>
@@ -125,11 +132,11 @@ below, and set the current user to user1.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>The <code>play</code> method controls user input and
 calls the required methods to keep track of
@@ -146,11 +153,11 @@ the users selections.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Get some input from the given user.</p>
 
@@ -162,11 +169,11 @@ the users selections.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>First off, check if the input is valid then
 record the position that the user has selected.</p>
@@ -179,11 +186,11 @@ record the position that the user has selected.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Once the we drop out of the loop above,
 all that remains is to tell the users who
@@ -199,11 +206,11 @@ has won and exit.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Make use of the <code>Set#subset?</code> method to check if
 a winning combination of numbers has been picked
@@ -221,11 +228,11 @@ otherwise nil will be returned.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Make sure input is a number between 1-9</p>
 
@@ -239,11 +246,11 @@ otherwise nil will be returned.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Make sure either user hasn’t already picked
 the input</p>
@@ -260,11 +267,11 @@ the input</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>If we make it here, it’s valid</p>
 
@@ -278,11 +285,11 @@ the input</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Add the supplied answer to the users <code>Set</code> and toggle
 the other user to be the <code>@current_user</code></p>
@@ -297,11 +304,11 @@ the other user to be the <code>@current_user</code></p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Define a basic <code>Struct</code> to hold the
 user information.</p>
