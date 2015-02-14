@@ -216,9 +216,7 @@ the input</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    puts <span class="hljs-variable">@user1</span>.answers.one? { |n| n == input }.inspect
-    puts <span class="hljs-variable">@user2</span>.answers.one? { |n| n == input }.inspect
-    <span class="hljs-keyword">if</span> <span class="hljs-variable">@user1</span>.answers.one? { |n| n == input } || <span class="hljs-variable">@user2</span>.answers.one? { |n| n == input }
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-variable">@user1</span>.answers.one? { |n| n == input } || <span class="hljs-variable">@user2</span>.answers.one? { |n| n == input }
       puts <span class="hljs-string">"This number has already been picked"</span>
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span> 
     <span class="hljs-keyword">end</span></pre></div></div>
