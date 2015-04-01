@@ -16,38 +16,45 @@
           <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
           <a class="small" href="javascript:void(0);">+</a>
           <div id="jump_wrapper">
-          <div id="jump_page">
-            
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
               
-              <a class="source" href="binary_search_tree.html">
-                binary_search_tree.rb
-              </a>
-            
+                
+                <a class="source" href="binary_search_tree.html">
+                  binary_search_tree.rb
+                </a>
               
-              <a class="source" href="bubble_sort.html">
-                bubble_sort.rb
-              </a>
-            
+                
+                <a class="source" href="bubble_sort.html">
+                  bubble_sort.rb
+                </a>
               
-              <a class="source" href="queue.html">
-                queue.rb
-              </a>
-            
+                
+                <a class="source" href="merge_sort.html">
+                  merge_sort.rb
+                </a>
               
-              <a class="source" href="singly_linked_list.html">
-                singly_linked_list.rb
-              </a>
-            
+                
+                <a class="source" href="queue.html">
+                  queue.rb
+                </a>
               
-              <a class="source" href="stack.html">
-                stack.rb
-              </a>
-            
+                
+                <a class="source" href="singly_linked_list.html">
+                  singly_linked_list.rb
+                </a>
               
-              <a class="source" href="tictactoe.html">
-                tictactoe.rb
-              </a>
-            
+                
+                <a class="source" href="stack.html">
+                  stack.rb
+                </a>
+              
+                
+                <a class="source" href="tictactoe.html">
+                  tictactoe.rb
+                </a>
+              
+            </div>
           </div>
         </li>
       </ul>
@@ -261,6 +268,54 @@ will get O( log n ) time.</p>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>check_height(node)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> node.<span class="hljs-keyword">nil</span>?
+
+    leftHeight = check_height(node.left)
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> leftHeight == -<span class="hljs-number">1</span>
+
+    rightHeight = check_height(node.right)
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> rightHeight == -<span class="hljs-number">1</span>
+
+    diff = leftHeight - rightHeight
+    <span class="hljs-keyword">if</span> diff.abs &gt; <span class="hljs-number">1</span>
+      -<span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>
+      [leftHeight, rightHeight].max + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>is_balanced?(node=<span class="hljs-variable">@root</span>)
+    check_height(node) == -<span class="hljs-number">1</span> ? <span class="hljs-keyword">false</span> <span class="hljs-symbol">:</span> <span class="hljs-keyword">true</span>
+  <span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span>
+
+tree = <span class="hljs-constant">BinarySearchTree</span>.new
+tree.insert(<span class="hljs-number">50</span>)
+tree.insert(<span class="hljs-number">25</span>)
+tree.insert(<span class="hljs-number">75</span>)
+tree.insert(<span class="hljs-number">12</span>)
+tree.insert(<span class="hljs-number">37</span>)
+tree.insert(<span class="hljs-number">87</span>)
+tree.insert(<span class="hljs-number">63</span>)
+puts tree.inspect
+puts <span class="hljs-string">"tree.is_balanced?"</span>
+puts tree.is_balanced?
+
+puts <span class="hljs-string">"pre_order"</span>
+tree.pre_order <span class="hljs-keyword">do</span> |node|
+  puts node.key
+<span class="hljs-keyword">end</span>
+
+puts <span class="hljs-string">"in_order"</span>
+tree.in_order <span class="hljs-keyword">do</span> |node|
+  puts node.key
+<span class="hljs-keyword">end</span>
+
+puts <span class="hljs-string">"post_order"</span>
+tree.post_order <span class="hljs-keyword">do</span> |node|
+  puts node.key
 <span class="hljs-keyword">end</span></pre></div></div>
             
         </li>

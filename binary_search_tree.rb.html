@@ -1,0 +1,123 @@
+<!DOCTYPE html><html><head><title>binary_search_tree.rb</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="./docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="./index.html" class="source"><span class="file_name">README</span></a><a href="./binary_search_tree.rb.html" class="source selected"><span class="base_path">. / </span><span class="file_name">binary_search_tree.rb</span></a><a href="./bubble_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">bubble_sort.rb</span></a><a href="./merge_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">merge_sort.rb</span></a><a href="./queue.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">queue.rb</span></a><a href="./singly_linked_list.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">singly_linked_list.rb</span></a><a href="./stack.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">stack.rb</span></a><a href="./tictactoe.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">tictactoe.rb</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>binary_search_tree.rb</h1><div class="filepath">./</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div><h1>Binary Search Tree</h1>
+</td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinarySearchTree</span>
+  <span class="k">class</span> <span class="nc">Node</span>
+    <span class="kp">attr_reader</span> <span class="ss">:key</span><span class="p">,</span> <span class="ss">:left</span><span class="p">,</span> <span class="ss">:right</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>On initialization, the <code>@key</code> variable is set.  This is used in the insert
+method below as the parent for the <code>@left</code> and <code>@right</code> nodes.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span> <span class="n">key</span> <span class="p">)</span>
+      <span class="vi">@key</span> <span class="o">=</span> <span class="n">key</span>
+      <span class="vi">@left</span> <span class="o">=</span> <span class="kp">nil</span>
+      <span class="vi">@right</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="k">end</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>Inserting at the node level will check what the new key is in
+order to insert it in the appropriate place.  The restriction being that
+the key in any node is larger than the keys in all nodes in that node's 
+left sub-tree and smaller than the keys in all nodes in that node's 
+right sub-tree.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">new_key</span> <span class="p">)</span>
+      <span class="k">if</span> <span class="n">new_key</span> <span class="o">&lt;=</span> <span class="vi">@key</span>
+        <span class="vi">@left</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="vi">@left</span> <span class="o">=</span> <span class="no">Node</span><span class="o">.</span><span class="n">new</span><span class="p">(</span> <span class="n">new_key</span> <span class="p">)</span> <span class="p">:</span> <span class="vi">@left</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">new_key</span> <span class="p">)</span>
+      <span class="k">elsif</span> <span class="n">new_key</span> <span class="o">&gt;</span> <span class="vi">@key</span>
+        <span class="vi">@right</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="vi">@right</span> <span class="o">=</span> <span class="no">Node</span><span class="o">.</span><span class="n">new</span><span class="p">(</span> <span class="n">new_key</span> <span class="p">)</span> <span class="p">:</span> <span class="vi">@right</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">new_key</span> <span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>Initialize the <code>@root</code> variable to <code>nil</code>.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@root</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>Inserting at the <code>BinarySearchTree</code> level looks if there is a
+<code>@root</code> node, if not it creates one.  If there is then the insert
+is delegated the the <code>Node</code> level.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">key</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@root</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="vi">@root</span> <span class="o">=</span> <span class="no">Node</span><span class="o">.</span><span class="n">new</span><span class="p">(</span> <span class="n">key</span> <span class="p">)</span>
+    <span class="k">else</span>
+      <span class="vi">@root</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">key</span> <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>This is <strong>in order traversal</strong> (recursive implementation).
+Notice hold the yield for visting the node is <strong>in between</strong> the
+two recursive calls for left and right nodes respectively.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="vi">@root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">node</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>This is <strong>pre order traversal</strong> (recursive implementation).
+Notice hold the yield for visting the node is <strong>before</strong> the
+two recursive calls for left and right nodes respectively.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">pre_order</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="vi">@root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="k">yield</span> <span class="n">node</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><p>This is <strong>post order traversal</strong> (recursive implementation).
+Notice hold the yield for visting the node is <strong>after</strong> the
+two recursive calls for left and right nodes respectively.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">post_order</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="vi">@root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">in_order</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">node</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><p>This is where you get to see the binary search tree shine.
+A recursive approach is taken to traverse the tree, each time
+disregarding half of the nodes in the tree.  With this you
+will get O( log n ) time.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">search</span><span class="p">(</span> <span class="n">key</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="vi">@root</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="kp">nil</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+      <span class="n">search</span><span class="p">(</span> <span class="n">key</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="p">)</span>
+    <span class="k">elsif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+      <span class="n">search</span><span class="p">(</span> <span class="n">key</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="p">)</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="n">node</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">check_height</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+
+    <span class="n">leftHeight</span> <span class="o">=</span> <span class="n">check_height</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">leftHeight</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">rightHeight</span> <span class="o">=</span> <span class="n">check_height</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">rightHeight</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">leftHeight</span> <span class="o">-</span> <span class="n">rightHeight</span>
+    <span class="k">if</span> <span class="n">diff</span><span class="o">.</span><span class="n">abs</span> <span class="o">&gt;</span> <span class="mi">1</span>
+      <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span>
+      <span class="o">[</span><span class="n">leftHeight</span><span class="p">,</span> <span class="n">rightHeight</span><span class="o">].</span><span class="n">max</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">is_balanced?</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="vi">@root</span><span class="p">)</span>
+    <span class="n">check_height</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="kp">false</span> <span class="p">:</span> <span class="kp">true</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="n">tree</span> <span class="o">=</span> <span class="no">BinarySearchTree</span><span class="o">.</span><span class="n">new</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">87</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">63</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">tree</span><span class="o">.</span><span class="n">inspect</span>
+<span class="nb">puts</span> <span class="s2">&quot;tree.is_balanced?&quot;</span>
+<span class="nb">puts</span> <span class="n">tree</span><span class="o">.</span><span class="n">is_balanced?</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;pre_order&quot;</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">pre_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;in_order&quot;</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">in_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;post_order&quot;</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">post_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+<span class="k">end</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Wed Apr 01 2015 13:19:27 GMT+0100 (BST)  </div></div></body></html>

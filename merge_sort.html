@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>merge_sort.rb</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>merge_sort.rb</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">def</span> </span>merge_sort(arr)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Base case - since we can’t divide
+an array any further once its size
+is less than two, just return <code>arr</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> arr <span class="hljs-keyword">if</span> arr.size &lt; <span class="hljs-number">2</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Find the middle point of the array
+so we can recurse the left and right
+sections of the array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  middle = arr.size / <span class="hljs-number">2</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Recurse the left portion of the array.
+Notice we’re using the <code>...</code> range when
+slicing <code>arr</code> - this excludes the
+end value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  left = merge_sort(arr[<span class="hljs-number">0</span>...middle])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Recurse the right portion of the array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  right = merge_sort(arr[middle..arr.size])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Make a call to the <code>merge</code> function, which
+will do the sorting.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  merge(left, right)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>merge(left, right)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>When sorting the values we need to push them
+into this this variable.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  sorted = []</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Loop through the left and right arrays.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">while</span> left.any? &amp;&amp; right.any?</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>If the first element is greater than or equal
+to the first <code>right</code> element then remove the first
+element from the <code>right</code> array and push it onto the
+end of the <code>sorted</code> array. Otherwise, remove the
+first element from the <code>left</code> array and push it
+onto the end of the <code>sorted</code> array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> left.first &gt;= right.first
+      sorted.push right.shift
+    <span class="hljs-keyword">else</span>
+      sorted.push left.shift
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Finally, any remaining elements on the <code>left</code>
+or <code>right</code> arrays should be concatenated onto
+the <code>sorted</code> array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  sorted + left + right
+<span class="hljs-keyword">end</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

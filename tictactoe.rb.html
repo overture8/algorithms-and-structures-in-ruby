@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><title>tictactoe.rb</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="./docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="./index.html" class="source"><span class="file_name">README</span></a><a href="./binary_search_tree.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">binary_search_tree.rb</span></a><a href="./bubble_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">bubble_sort.rb</span></a><a href="./merge_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">merge_sort.rb</span></a><a href="./queue.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">queue.rb</span></a><a href="./singly_linked_list.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">singly_linked_list.rb</span></a><a href="./stack.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">stack.rb</span></a><a href="./tictactoe.rb.html" class="source selected"><span class="base_path">. / </span><span class="file_name">tictactoe.rb</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>tictactoe.rb</h1><div class="filepath">./</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div><h1>TicTacToe</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;set&#39;</span>
+
+<span class="k">class</span> <span class="nc">TicTacToe</span>
+  <span class="k">def</span> <span class="nf">initialize</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>Why use Sets? <code>Sets</code> are particularly useful when
+identifying if a user has a winning line. We don't
+need to worry about the order that they picked the
+winning numbers - just use the built in <code>subset?</code>
+method and we're done. See the <code>winner?</code> method below.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@winning_sets</span> <span class="o">=</span> <span class="o">[</span>
+      <span class="no">Set</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="o">]</span><span class="p">,</span> 
+      <span class="no">Set</span><span class="o">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span>
+    <span class="o">]</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>Create two users using the <code>Struct</code>, defined
+below, and set the current user to user1.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@user1</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;User1&#39;</span><span class="p">)</span>
+    <span class="vi">@user2</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;User2&#39;</span><span class="p">)</span>
+    <span class="vi">@current_user</span> <span class="o">=</span> <span class="vi">@user1</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>The <code>play</code> method controls user input and
+calls the required methods to keep track of
+the users selections.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="n">play</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">play</span>
+    <span class="k">until</span> <span class="n">winner?</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>Get some input from the given user.</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@current_user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, choose a number from 1-9: &quot;</span>
+      <span class="n">input</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">strip</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>First off, check if the input is valid then
+record the position that the user has selected.</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="n">mark_position</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="k">if</span> <span class="n">valid?</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+    <span class="k">end</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>Once the we drop out of the loop above,
+all that remains is to tell the users who
+has won and exit.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nb">puts</span> <span class="s2">&quot;The winner is, </span><span class="si">#{</span><span class="n">winner?</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">winner?</span></pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><p>Make use of the <code>Set#subset?</code> method to check if
+a winning combination of numbers has been picked
+bby either of the users. If so, return that user
+otherwise nil will be returned.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">return</span> <span class="vi">@user1</span> <span class="k">if</span> <span class="vi">@winning_sets</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">w</span><span class="o">|</span> <span class="n">w</span><span class="o">.</span><span class="n">subset?</span><span class="p">(</span><span class="vi">@user1</span><span class="o">.</span><span class="n">answers</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="vi">@user2</span> <span class="k">if</span> <span class="vi">@winning_sets</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">w</span><span class="o">|</span> <span class="n">w</span><span class="o">.</span><span class="n">subset?</span><span class="p">(</span><span class="vi">@user2</span><span class="o">.</span><span class="n">answers</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">valid?</span><span class="p">(</span><span class="n">input</span><span class="p">)</span></pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><p>Make sure input is a number between 1-9</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="n">input</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="sr">/^\d$/</span><span class="p">)</span><span class="o">.</span><span class="n">none?</span>
+      <span class="nb">puts</span> <span class="s2">&quot;Provide a number between 1-9&quot;</span>
+      <span class="k">return</span> <span class="kp">false</span> 
+    <span class="k">end</span></pre></div></td></tr><tr id="section-10"><td class="docs"><div class="pilwrap"><a href="#section-10" class="pilcrow">&#182;</a></div><p>Make sure either user hasn't already picked
+the input</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="vi">@user1</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">one?</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span> <span class="o">==</span> <span class="n">input</span> <span class="p">}</span> <span class="o">||</span> <span class="vi">@user2</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">one?</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span> <span class="o">==</span> <span class="n">input</span> <span class="p">}</span>
+      <span class="nb">puts</span> <span class="s2">&quot;This number has already been picked&quot;</span>
+      <span class="k">return</span> <span class="kp">false</span> 
+    <span class="k">end</span></pre></div></td></tr><tr id="section-11"><td class="docs"><div class="pilwrap"><a href="#section-11" class="pilcrow">&#182;</a></div><p>If we make it here, it's valid</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="kp">true</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">mark_position</span><span class="p">(</span><span class="n">input</span><span class="p">)</span></pre></div></td></tr><tr id="section-12"><td class="docs"><div class="pilwrap"><a href="#section-12" class="pilcrow">&#182;</a></div><p>Add the supplied answer to the users <code>Set</code> and toggle
+the other user to be the <code>@current_user</code></p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@current_user</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">input</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span>
+    <span class="vi">@current_user</span> <span class="o">=</span> <span class="vi">@current_user</span> <span class="o">==</span> <span class="vi">@user1</span> <span class="p">?</span> <span class="vi">@user2</span> <span class="p">:</span> <span class="vi">@user1</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre></div></td></tr><tr id="section-13"><td class="docs"><div class="pilwrap"><a href="#section-13" class="pilcrow">&#182;</a></div><p>Define a basic <code>Struct</code> to hold the
+user information.</p>
+</td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:answers</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">answers</span> <span class="o">=</span> <span class="nb">name</span><span class="p">,</span> <span class="no">Set</span><span class="o">[]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Wed Apr 01 2015 13:19:28 GMT+0100 (BST)  </div></div></body></html>

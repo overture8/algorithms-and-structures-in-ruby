@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head><title>singly_linked_list.rb</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="./docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="./index.html" class="source"><span class="file_name">README</span></a><a href="./binary_search_tree.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">binary_search_tree.rb</span></a><a href="./bubble_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">bubble_sort.rb</span></a><a href="./merge_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">merge_sort.rb</span></a><a href="./queue.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">queue.rb</span></a><a href="./singly_linked_list.rb.html" class="source selected"><span class="base_path">. / </span><span class="file_name">singly_linked_list.rb</span></a><a href="./stack.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">stack.rb</span></a><a href="./tictactoe.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">tictactoe.rb</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>singly_linked_list.rb</h1><div class="filepath">./</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div><h1>Singly Linked List</h1>
+</td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SinglyLinkedList</span>
+  <span class="kp">attr_reader</span> <span class="ss">:head</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>Create a <code>Node</code> struture to represent
+an individual node in the linked list.
+There is a <code>data</code> field to hold any data 
+and a <code>next</code> field that points to the 
+next item in the list.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Node</span>
+    <span class="kp">attr_accessor</span> <span class="ss">:data</span><span class="p">,</span> <span class="ss">:next</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+      <span class="vi">@data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">end</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>Initialize <code>@head</code> as nil when creating the
+Singly Linked List. This may not really be
+required but I was just be explicit for clarity.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@head</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>If the head of the linked list is <code>nil</code>
+the list is empty.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">is_empty?</span>
+    <span class="vi">@head</span><span class="o">.</span><span class="n">nil?</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>This removes a node from the linked list
+by removing the node in question from chain,
+so to speak. Basically, while iterating threw
+the list it keeps track of the previous node
+then when it finds the node it assigns
+<code>node.next</code> to <code>prev.next</code>, affectively skipping
+the found node.
+* <strong>Time Complexity</strong>: <code>O( n )</code></p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">remove!</span><span class="p">(</span><span class="n">node_to_remove</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="vi">@head</span>
+    <span class="n">prev</span> <span class="o">=</span> <span class="kp">nil</span>
+
+    <span class="k">until</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="n">node_to_remove</span>
+        <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span>
+      <span class="k">else</span>
+        <span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+      <span class="k">end</span>
+      <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">end</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>This method modifies the linked list
+to be unique with the help of a buffer.
+Nodes are added to <code>element_list</code> and it
+is checked each iteration to see if the
+current node already exists in it. If it
+does, it set the previous node's next link
+to equal the current node's next (removing
+it from the linked list.
+* <strong>Time Complexity</strong>: <code>O( n )</code></p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">unique!</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="vi">@head</span>
+    <span class="n">prev</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">element_list</span> <span class="o">=</span> <span class="o">[]</span>
+
+    <span class="k">until</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="k">if</span> <span class="n">element_list</span><span class="o">.</span><span class="n">include?</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+      <span class="k">else</span>
+        <span class="n">element_list</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+      <span class="k">end</span>
+      <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">end</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>To insert a new node we simply
+pass in the <code>data</code> and create a
+new node using the <code>Node</code> class.
+The we just move <code>@head</code> to be the
+<code>next</code> link and then reassign this
+new node to <code>@head</code>.
+* <strong>Time Complexity</strong>: <code>O( 1 )</code></p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">new_node</span> <span class="o">=</span> <span class="no">Node</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="vi">@head</span>
+    <span class="vi">@head</span> <span class="o">=</span> <span class="n">new_node</span>
+    <span class="n">new_node</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><p>This is an iterative approach to
+reversing the linked list.  There
+are a few things going on here:-</p>
+
+<ol>
+<li>Store the current nodes link to the next pointer</li>
+<li>Change current nodes next link to previous node</li>
+<li>Store current node in prev var to be used in next iteration</li>
+<li>Set current node to be the next node and the iteration continues until node is <code>nil</code></li>
+<li>Finally, set <code>@head</code> to be prev (which is the last node)
+.</li>
+<li><strong>Time Complexity</strong>: <code>O( n )</code></li>
+</ol>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">reverse_using_iteration</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="vi">@head</span>
+    <span class="n">prev</span> <span class="o">=</span> <span class="kp">nil</span>
+
+    <span class="k">until</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="n">next_node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+      <span class="n">node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span>
+      <span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+      <span class="n">node</span> <span class="o">=</span> <span class="n">next_node</span>
+    <span class="k">end</span>
+    <span class="vi">@head</span> <span class="o">=</span> <span class="n">prev</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><p>This is the recursive version of the
+iterative approach above.
+* <strong>Time Complexity</strong>: <code>O( n )</code></p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">reverse_using_recursion</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="vi">@head</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="vi">@head</span> <span class="o">=</span> <span class="n">node</span>
+      <span class="k">return</span>
+    <span class="k">end</span>
+
+    <span class="n">reverse_using_recursion</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+
+    <span class="n">node</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="k">end</span></pre></div></td></tr><tr id="section-10"><td class="docs"><div class="pilwrap"><a href="#section-10" class="pilcrow">&#182;</a></div><p>This is a simple print function that
+iterates the linked list and allows you
+to pass a block in to do what you want
+with a given node.
+Like so, <code>print { |n| puts n }</code>
+* <strong>Time Complexity</strong>: <code>O( n )</code></p>
+</td><td class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="vi">@head</span>
+
+    <span class="k">until</span> <span class="n">node</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+      <span class="k">yield</span> <span class="n">node</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Wed Apr 01 2015 13:19:28 GMT+0100 (BST)  </div></div></body></html>

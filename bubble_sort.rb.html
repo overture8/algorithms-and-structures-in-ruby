@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><title>bubble_sort.rb</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="./docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="./index.html" class="source"><span class="file_name">README</span></a><a href="./binary_search_tree.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">binary_search_tree.rb</span></a><a href="./bubble_sort.rb.html" class="source selected"><span class="base_path">. / </span><span class="file_name">bubble_sort.rb</span></a><a href="./merge_sort.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">merge_sort.rb</span></a><a href="./queue.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">queue.rb</span></a><a href="./singly_linked_list.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">singly_linked_list.rb</span></a><a href="./stack.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">stack.rb</span></a><a href="./tictactoe.rb.html" class="source "><span class="base_path">. / </span><span class="file_name">tictactoe.rb</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>bubble_sort.rb</h1><div class="filepath">./</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>Store the <code>length</code> of the array for use in
+the iterator below.</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="n">n</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">size</span>
+
+  <span class="k">until</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">new_n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p><strong>Swap</strong> the values of the two elements in
+question if the previous element is greater
+than the current element.</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p><code>new_n</code> is used to store how along the
+array we should go on each pass.  This
+prevents needless going to the end of
+the array when we know those elements
+are in the correct order.</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="n">new_n</span> <span class="o">=</span> <span class="n">i</span>
+      <span class="k">end</span>
+    <span class="k">end</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>Set <code>n</code> to the value of <code>new_n</code>, collected in the 
+if statement above. This will continue to get
+smaller until it eventially reaches zero.</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="n">n</span> <span class="o">=</span> <span class="n">new_n</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Wed Apr 01 2015 13:19:27 GMT+0100 (BST)  </div></div></body></html>
